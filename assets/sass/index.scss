@@ -1,0 +1,40 @@
+@charset "utf-8";
+@import url("https://use.fontawesome.com/7d90fe5352.css");
+// COLORS
+$white-color: #ffffff;
+$black-color: #000000;
+$teal-color-saturated: #49a09d;
+$teal-color-bright: #00b6ad;
+$grey-color-light: #e6e6e6;
+$grey-color-medium: #aaaaaa;
+$purple-color: #5f2c82;
+// BRAND
+$brand-color-start: $purple-color;
+$brand-color-end: $teal-color-saturated;
+// GLOBALS
+$global-min-width: 340px;
+$global-max-width: 550px;
+$global-font-size: 20px;
+$global-font-family: Avenir, san-serif;
+$global-spacing: 20px;
+$global-font-color: $black-color;
+$global-border-width: 3px;
+$global-background-color: $grey-color-light;
+$global-base-width: $global-font-size;
+$global-base-height: $global-font-size;
+// HEADING
+$heading-font-color: $teal-color-bright;
+// NAVIGATION TABS
+$tab-font-color: $black-color;
+$tab-background-color-selected: $white-color;
+// FORM
+$form-placeholder-font-color: $grey-color-medium;
+$form-font-color: $tab-font-color;
+$form-background-color: $tab-background-color-selected;
+$form-input-border-color: $teal-color-bright;
+// FORM BUTTONS
+$button-font-color: $white-color;
+$direction-button-background-color: $teal-color-bright;
+$submit-button-background-color: $grey-color-medium;
+$repo-button-background-color: $grey-color-medium;
+@import "mixins", "base", "buttons", "forms", "text";

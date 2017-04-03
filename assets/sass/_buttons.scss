@@ -1,0 +1,88 @@
+.button__large {
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-block;
+  color: $button-font-color;
+  background-color: $repo-button-background-color;
+  text-align: center;
+  padding: $global-spacing/2 $global-spacing;
+  margin: $global-spacing/4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.5px;
+
+  &:hover {
+    font-weight: 600;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  i {
+    font-size: 20px;
+    margin-right: $global-spacing/4;
+  }
+}
+
+.liz-logo {
+  color: $button-font-color;
+  background: $brand-color-start;
+  background: -webkit-linear-gradient(to left, $brand-color-start, $brand-color-end);
+  background: linear-gradient(to left, $brand-color-start, $brand-color-end);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3), 0 2px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+nav {
+  width: 100%;
+  text-align: center;
+  @media (max-width: $global-max-width + $global-spacing*2) {
+    display: block;
+  }
+
+  .nav--tab {
+    color: $tab-font-color;
+    width: $global-max-width/4;
+    padding: $global-spacing/2 0;
+    display: block;
+    float: left;
+    @media (max-width: $global-max-width + $global-spacing*2) {
+      width: 100%;
+    }
+  }
+
+  .nav--tab.nav--tab__selected {
+    font-weight: bold;
+    background-color: $tab-background-color-selected;
+  }
+}
+
+.next,
+.previous {
+  width: 130px;
+  color: $button-font-color;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: $direction-button-background-color;
+}
+
+.autofill,
+.previous {
+  float: left;
+}
+
+.next,
+.submit {
+  float: right;
+}
+
+.autofill,
+.submit,
+.repeat {
+  color: $button-font-color;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: $submit-button-background-color;
+}
+
+.repeat {
+  margin-top: $global-spacing;
+}

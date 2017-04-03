@@ -1,0 +1,41 @@
+.project-title,
+.user-summary {
+  color: $heading-font-color;
+  padding-bottom: $global-spacing/4;
+}
+
+#project-examples {
+  background-color: $form-background-color;
+  padding: $global-spacing+$global-spacing/2 0;
+}
+
+#interaction {
+  padding: 0 0 $global-spacing*3 0
+}
+
+#time-display {
+  padding: 0 0 $global-spacing*2 0
+}
+
+#results {
+  background-color: $form-background-color;
+  margin-bottom: $global-spacing*3;
+  padding: $global-spacing 0;
+}
+
+ul {
+  padding: 0 $global-spacing*2 + $global-spacing/2;
+  text-align: left;
+  li {
+    padding: $global-spacing/2 0;
+
+    a {
+      color: $heading-font-color;
+      font-weight: 600;
+
+      &:hover {
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

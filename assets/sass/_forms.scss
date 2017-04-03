@@ -1,0 +1,52 @@
+form > div {
+  @include flexbox-column();
+  overflow-y: auto;
+  height: 100%;
+}
+
+.form--content {
+  padding: $global-spacing*3 0 $global-spacing*3-$global-spacing/2;
+  float: left;
+  margin: auto 0;
+  text-align: center;
+}
+
+#checkboxContent .row .center > label {
+  width: 150px;
+}
+
+#selectContent .row .center > .select {
+  padding: $global-spacing/2 0;
+  width: 150px;
+}
+
+#radioContent .row .center > label {
+  width: 170px;
+}
+
+#checkboxContent .row .center > label,
+#radioContent .row .center > label,
+#selectContent .row .center > label {
+  text-align: left;
+  border-radius: 0;
+  border: $global-border-width solid transparent;
+  float: left;
+}
+
+#checkboxContent .row .center > input,
+#radioContent .row .center > input,
+#selectContent .row .center > select {
+  float: left;
+}
+
+#textareaContent .form--content > .row {
+  text-align: left;
+}
+
+textarea.textarea__small {
+  height: 45px;
+}
+
+textarea.textarea__large {
+  height: 100px;
+}
