@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>es5: view spaghetti</title>
-  <meta name="description" content="Hi, I'm Liz Shigetoshi. This project is a way for me to experiment with front-end frameworks and forms..">
+  <title>es5: module & mvc</title>
+  <meta name="description" content="Hi, I'm Liz Shigetoshi. This project is a way for me to experiment with front-end frameworks and forms.">
   <meta name="keywords" content="Liz,Shigetoshi,frontend,client,forms">
   <meta name="author" content="Liz Shigetoshi">
   <meta name="application-name" content="javascript-es5-forms">
@@ -37,9 +37,9 @@
 
 <body>
   <div id="app">
-    <section class="intro">
+    <section id="introduction">
       <div class="row">
-        <h1 class="project-title">JavaScript ES5 Forms:<br>View Spaghetti</h1>
+        <h1 class="project-title">JavaScript ES5 Forms:<br>Module & MVC Pattern</h1>
         <a href="https://lshig.github.io" target="_blank"><span class="author">Liz Shigetoshi</span></a>
       </div>
     </section>
@@ -51,7 +51,7 @@
     <section id="interaction">
       <nav>
         <button type="button" class="nav--tab nav--tab__selected" id="checkboxTab">Checkboxes</button>
-        <button type="button" class="nav--tab" id="selectTab">Dropdowns</button>
+        <button type="button" class="nav--tab" id="selectTab">Selects</button>
         <button type="button" class="nav--tab" id="radioTab">Radios</button>
         <button type="button" class="nav--tab" id="textareaTab">Textboxes</button>
       </nav>
@@ -255,22 +255,12 @@
       </div>
     </section>
   </div>
-  <script src="javascript-es5/ES5-View-Spaghetti.js"></script>
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-83296204-6', 'auto');
-    ga('send', 'pageview');
-  </script>
+  <script src="./es5/module-mvc/Model.js"></script>
+  <script src="./es5/module-mvc/View.js"></script>
+  <script src="./es5/module-mvc/Controller.js"></script>
+  <script src="./es5/Template.js"></script>
+  <script src="./es5/ES5-Module-MVC.js"></script>
+  <script src="ga.js"></script>
 </body>
 
 </html>
