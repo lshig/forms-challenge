@@ -1,3 +1,9 @@
+#WIP
+typescript
+
+# Source Maps
+*.js.map
+
 # Misc
 .DS_Store
 .env

@@ -1,7 +1,6 @@
-'use strict'
 import React from 'react'
-import Introduction from '../Introduction/index'
-import Interaction from '../../containers/Interaction/index'
+import Introduction from '../Introduction'
+import Interaction from '../../containers/Interaction'
 const App = () => (
   <div>
     <Introduction />

@@ -24,9 +24,7 @@
   "dependencies": {
     "prop-types": "*",
     "react": "*",
-    "react-dom": "*",
-    "react-redux": "*",
-    "redux": "*"
+    "react-dom": "*"
   },
   "devDependencies": {
     "babel-core": "*",
@@ -39,9 +37,7 @@
     "html-webpack-plugin": "*",
     "jest-cli": "*",
     "react-dom": "*",
-    "react-redux": "*",
     "react-test-renderer": "*",
-    "redux": "*",
     "standard": "*",
     "uglifyjs-webpack-plugin": "*",
     "webpack": "*",
@@ -54,6 +50,6 @@
     "test:watch": "npm test -- --watch",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "server": "webpack-dev-server --open --watch"
+    "server": "webpack-dev-server"
   }
 }

@@ -1,7 +1,6 @@
-'use strict'
 import React from 'react'
 const Introduction = () => (
-  <section className='introduction'>
+  <section id='introduction'>
     <div className='row'>
       <h1 className='project-title'>JavaScript ES2015+ Forms: <br />React & JSX</h1>
       <a href='https://lshig.github.io' target='_blank'>

@@ -1,8 +1,7 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../microcomponents/Button/index'
-import Select from '../../microcomponents/Select/index'
+import Button from '../Button'
+import Select from '../Select'
 const DropdownsContent = ({id, className, onSelectChange, onPreviousClick, onNextClick}) => {
   const createOptionsList = (startIndex, endIndex) => {
     let results = []

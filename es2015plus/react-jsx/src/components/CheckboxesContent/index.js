@@ -1,8 +1,7 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../microcomponents/Button/index'
-import Input from '../../microcomponents/Input/index'
+import Button from '../Button'
+import Input from '../Input'
 const CheckboxesContent = ({id, className, onCheckboxClick, onAutofillClick, onNextClick}) => {
   const choices = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   return (

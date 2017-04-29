@@ -1,5 +1,6 @@
 ## Getting Started
 - react + react-dom + prop-types
+- redux + redux-thunk + redux-logger
 - Babel + preset-env, preset-react
 - Webpack 2 + uglify plugin, html plugin
 - Jest + Enzyme + react-test-renderer
@@ -15,3 +16,4 @@
 - https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0s
 - https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
 - https://medium.com/modus-create-front-end-development/component-rendering-performance-in-react-df859b474adc
+- http://redux.js.org/docs/advanced/ExampleRedditAPI.html

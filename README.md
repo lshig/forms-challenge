@@ -5,12 +5,13 @@ Check out the [Live Demo](https://lshig.github.io/forms-challenge)!
 A way for me to experiment with front-end frameworks and forms.
 
 ## Project Timeline
-- JavaScript ES5: View Spaghetti
-- JavaScript ES5: MVC + Design Patterns
-- JavaScript ES2015+, Webpack, Babel
-- JavaScript ES2015+, React, JSX, Webpack, Babel
-- JavaScript ES2015+, Vue, Webpack, Babel
-- Typescript, Angular
+- [x] JavaScript ES5: View Spaghetti
+- [x] JavaScript ES5: MVC + Design Patterns
+- [ ] JavaScript ES2015+, Webpack, Babel
+- [x] JavaScript ES2015+, React, JSX, Webpack, Babel
+- [x] JavaScript ES2015+, React, Redux, JSX, Webpack, Babel
+- [ ] JavaScript ES2015+, Vue, Webpack, Babel
+- [ ] Typescript, Angular
 
 ## Methodology
 Start with documentation. Build using examples and/or starter pack resources. Build for GitHub Pages. Go from JavaScript DOM basics and add design patterns, then move on to view libraries, and finally to fuller front-end MVVM/MVC frameworks.
@@ -23,7 +24,7 @@ Start with documentation. Build using examples and/or starter pack resources. Bu
 
 ## TODO
 - Webpack, Babel, ES2015+
-- Standard
+- Standard + ESLint
 - https://github.com/rwaldron/idiomatic.js/
 - https://webaccessibility.withgoogle.com/course
 

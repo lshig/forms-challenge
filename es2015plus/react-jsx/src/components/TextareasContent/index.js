@@ -1,8 +1,7 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../microcomponents/Button/index'
-import TextArea from '../../microcomponents/TextArea/index'
+import Button from '../Button'
+import TextArea from '../TextArea'
 const TextareasContent = ({id, className, onTextareaChange, onPreviousClick, onSubmitClick}) => {
   return (
     <div id={id} className={className}>

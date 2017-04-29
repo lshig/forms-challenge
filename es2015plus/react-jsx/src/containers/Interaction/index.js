@@ -1,10 +1,9 @@
-'use strict'
 import React, {Component} from 'react'
-import Button from '../../microcomponents/Button/index'
-import CheckboxesContent from '../../components/CheckboxesContent/index'
-import DropdownsContent from '../../components/DropdownsContent/index'
-import RadiosContent from '../../components/RadiosContent/index'
-import TextareasContent from '../../components/TextareasContent/index'
+import Button from '../../components/Button'
+import CheckboxesContent from '../../components/CheckboxesContent'
+import DropdownsContent from '../../components/DropdownsContent'
+import RadiosContent from '../../components/RadiosContent'
+import TextareasContent from '../../components/TextareasContent'
 import {
   duration,
   tabContentMap,
@@ -47,10 +46,8 @@ export default class Interaction extends Component {
       comments: 'Hello, World!',
       firstName: 'Jane',
       lastName: 'Doe',
-      dateTime: '',
       day: '14',
       month: '3',
-      sessionDuration: '',
       timeOfDay: 'Late Night',
       weekday: [
         'Sunday', 'Thursday', 'Friday', 'Saturday'
@@ -131,7 +128,6 @@ export default class Interaction extends Component {
   }
   handleTimer () {
     if (this.state.timer < 0) {
-      clearInterval(this.state.intervalId)
       this.setState({
         activeTime: false,
         dateTime: new Date().toISOString(),
