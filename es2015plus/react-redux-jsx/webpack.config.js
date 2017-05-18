@@ -15,17 +15,20 @@ const VendorChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
 })
 const config = {
   entry: {
-    'es2015plus/react-redux-jsx/dest/ES2015plus-React-Redux-JSX': './src/index.js'
+    'es2015plus/react-redux-jsx/dest/ES2015plus-React-Redux-JSX': './src/index.jsx'
   },
   output: {
     path: path.join(__dirname, '..', '..'),
     libraryTarget: 'umd',
     filename: '[name].js'
   },
+  resolve: {
+    extensions: ['.js','.jsx']
+  },
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         include: [
           path.resolve(__dirname, 'src')
         ],

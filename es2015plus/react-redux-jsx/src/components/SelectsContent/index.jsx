@@ -2,41 +2,39 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import Select from '../Select'
-const SelectsContent = ({
+export default function SelectsContent ({
   className,
   selectOptions,
   id,
   onSelectChange,
   onPreviousClick,
   onNextClick
-}) => {
+}) {
   return (
     <div id={id} className={className}>
-      <div className='form--content'>
-      {selectOptions.map((item,index) => {
-        return (
-          <div className='row' key={index}>
-            <div className='center'>
-              <Select
-                label={item.label}
-                name={item.name}
-                onChange={onSelectChange}
-                options={item.options}
-              />
-            </div>
+      <div className="form--content">
+      {selectOptions.map((item,index) => (
+        <div className="row" key={index}>
+          <div className="center">
+            <Select
+              {...item}
+              onChange={onSelectChange}
+            />
           </div>
-        );
-      })}
+        </div>
+      ))}
       </div>
-      <div className='row'>
+      <div className="row">
         <Button
-          className='previous'
+          className="previous"
           onClick={onPreviousClick}
-          text='Previous' />
+          text="Previous"
+        />
         <Button
-          className='next'
+          className="next"
           onClick={onNextClick}
-          text='Next' />
+          text="Next"
+        />
       </div>
     </div>
   )
@@ -49,4 +47,3 @@ SelectsContent.propTypes = {
   onPreviousClick: PropTypes.func.isRequired,
   onSelectChange: PropTypes.func.isRequired
 }
-export default SelectsContent

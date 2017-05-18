@@ -2,41 +2,44 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import Input from '../Input'
-const CheckboxesContent = ({
+export default function CheckboxesContent ({
   checkboxOptions,
   className,
   id,
   onCheckboxClick,
   onAutofillClick,
   onNextClick
-}) => {
+}) {
   return (
     <div id={id} className={className}>
-      <div className='form--content'>
-        {checkboxOptions.map(box =>
-          <div className='row' key={box}>
-            <div className='center'>
+      <div className="form--content">
+        {checkboxOptions.map((item,index) => (
+          <div className="row" key={index}>
+            <div className="center">
               <Input
-                className='input--checkbox'
-                label={box}
-                name='weekday'
+                className="input--checkbox"
+                label={item}
+                name="weekday"
                 onClick={onCheckboxClick}
-                type='checkbox'
-                value={box} />
+                type="checkbox"
+                value={item}
+              />
             </div>
           </div>
-        )}
+        ))}
       </div>
-      <div className='row'>
+      <div className="row">
         <Button
-          className='autofill'
-          id='autofillButton'
+          className="autofill"
+          id="autofillButton"
           onClick={onAutofillClick}
-          text='Autofill' />
+          text="Autofill"
+        />
         <Button
-          className='next'
+          className="next"
           onClick={onNextClick}
-          text='Next' />
+          text="Next"
+        />
       </div>
     </div>
   )
@@ -49,4 +52,3 @@ CheckboxesContent.propTypes = {
   onCheckboxClick: PropTypes.func.isRequired,
   onNextClick: PropTypes.func.isRequired
 }
-export default CheckboxesContent

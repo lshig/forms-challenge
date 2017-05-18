@@ -2,43 +2,40 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import TextArea from '../TextArea'
-const TextareasContent = ({
+export default function TextareasContent ({
   id,
   className,
   onTextareaChange,
   onPreviousClick,
   onSubmitClick,
   textareaOptions
-}) => {
+}) {
   return (
     <div
       id={id}
       className={className}>
-      <div className='form--content'>
-      {textareaOptions.map((item,index) => {
-        return (
-          <div className='row' key={index}>
-            <TextArea
-              className={item.className}
-              label={item.label}
-              name={item.name}
-              onChange={onTextareaChange}
-              placeholder={item.placeholder}
-            />
-          </div>
-        );
-      })}
+      <div className="form--content">
+      {textareaOptions.map((item,index) => (
+        <div className="row" key={index}>
+          <TextArea
+            {...item}
+            onChange={onTextareaChange}
+          />
+        </div>
+      ))}
       </div>
-      <div className='row'>
+      <div className="row">
         <Button
-          className='previous'
+          className="previous"
           onClick={onPreviousClick}
-          text='Previous' />
+          text="Previous"
+        />
         <Button
-          className='submit'
-          id='submitButton'
+          className="submit"
+          id="submitButton"
           onClick={onSubmitClick}
-          text='Submit' />
+          text="Submit"
+        />
       </div>
     </div>
   )
@@ -51,4 +48,3 @@ TextareasContent.propTypes = {
   onTextareaChange: PropTypes.func.isRequired,
   textareaOptions: PropTypes.array.isRequired
 }
-export default TextareasContent

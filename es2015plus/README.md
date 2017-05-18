@@ -7,6 +7,8 @@
 - Standard + ESLint
 
 ## Helpful Resources
+- https://github.com/airbnb/javascript
+- https://github.com/airbnb/javascript/tree/master/react
 - https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 - https://babeljs.io/blog/2015/06/07/react-on-es6-plus
 - https://github.com/react-boilerplate/react-boilerplate

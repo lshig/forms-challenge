@@ -2,42 +2,44 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import Input from '../Input'
-const RadiosContent = ({
+export default function RadiosContent ({
   id,
   className,
   onRadioClick,
   onPreviousClick,
   onNextClick,
   radioOptions
-}) => {
+}) {
   return (
     <div
       id={id}
       className={className}>
-      <div className='form--content'>
-        {radioOptions.map((item,index) =>
-          <div className='row' key={index}>
-            <div className='center'>
+      <div className="form--content">
+        {radioOptions.map((item,index) => (
+          <div className="row" key={index}>
+            <div className="center">
               <Input
-                className='input--radio'
-                label={item.label}
-                name='timeOfDay'
+                {...item}
+                className="input--radio"
+                name="timeOfDay"
                 onClick={onRadioClick}
-                type='radio'
-                value={item.value} />
+                type="radio"
+              />
             </div>
           </div>
-        )}
+        ))}
       </div>
-      <div className='row'>
+      <div className="row">
         <Button
-          className='previous'
+          className="previous"
           onClick={onPreviousClick}
-          text='Previous' />
+          text="Previous"
+        />
         <Button
-          className='next'
+          className="next"
           onClick={onNextClick}
-          text='Next' />
+          text="Next"
+        />
       </div>
     </div>
   )
@@ -50,4 +52,3 @@ RadiosContent.propTypes = {
   onRadioClick: PropTypes.func.isRequired,
   radioOptions: PropTypes.array.isRequired
 }
-export default RadiosContent

@@ -1,23 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {
-  autofillForm,
-  inputValue,
-  resetForm,
-  submitForm
-} from './formState/actions'
-import {
-  resetNavigation,
-  showDirectedContent,
-  showTabContent
-} from './navigationState/actions'
-import {
-  earlyStopTimer,
-  proceedTimer,
-  resetTimer,
-  startTimer,
-  stopTimer
-} from './timerState/actions'
+import {autofillForm,inputValue,resetForm,submitForm} from './formState/actions'
+import {resetNavigation,showDirectedContent,showTabContent} from './navigationState/actions'
+import {earlyStopTimer,proceedTimer,resetTimer,startTimer,stopTimer} from './timerState/actions'
 import {tabContentMap,transformData} from './utils'
 import Button from '../../components/Button'
 import CheckboxesContent from '../../components/CheckboxesContent'
@@ -166,13 +151,13 @@ class Interaction extends Component {
     }
     return (
       <div>
-        <section id='time-display'>
-          <div className='row'>
-            <h1 id='timer'>{timerStatus}</h1>
+        <section id="time-display">
+          <div className="row">
+            <h1 id="timer">{timerStatus}</h1>
           </div>
         </section>
         <section
-          id='interaction'
+          id="interaction"
           className={showInteraction}>
           <nav>
             {tabContentMap.map(tab =>
@@ -181,55 +166,59 @@ class Interaction extends Component {
                 className={`nav--tab ${highlightTab(tab.tabId)}`}
                 id={tab.tabId}
                 onClick={this.handleTabClick}
-                text={tab.tabText} />
+                text={tab.tabText}
+              />
             )}
           </nav>
           <form>
             <CheckboxesContent
               checkboxOptions={checkboxOptions}
               className={showContent('checkboxContent')}
-              id='checkboxContent'
+              id="checkboxContent"
               onCheckboxClick={this.handleCheckboxClick}
               onAutofillClick={this.handleAutofillClick}
-              onNextClick={event => {this.handleDirectionClick(event,false)}}/>
+              onNextClick={event => {this.handleDirectionClick(event,false)}}
+            />
             <SelectsContent
               className={showContent('selectContent')}
-              id='selectContent'
+              id="selectContent"
               onSelectChange={this.handleInputEvent}
               onNextClick={event => {this.handleDirectionClick(event,false)}}
               onPreviousClick={event => {this.handleDirectionClick(event,true)}}
-              selectOptions={selectOptions}/>
+              selectOptions={selectOptions}
+            />
             <RadiosContent
               className={showContent('radioContent')}
-              id='radioContent'
+              id="radioContent"
               onRadioClick={this.handleInputEvent}
               onNextClick={event => {this.handleDirectionClick(event,false)}}
               onPreviousClick={event => {this.handleDirectionClick(event,true)}}
-              radioOptions={radioOptions}/>
+              radioOptions={radioOptions}
+            />
             <TextareasContent
               className={showContent('textareaContent')}
-              id='textareaContent'
+              id="textareaContent"
               onTextareaChange={this.handleInputEvent}
               onPreviousClick={event => {this.handleDirectionClick(event,true)}}
               onSubmitClick={this.handleSubmitClick}
-              textareaOptions={textareaOptions}/>
+              textareaOptions={textareaOptions}
+            />
           </form>
         </section>
-        <section
-          id='results'
-          className={showResults}>
-          <div className='row'>
-            <h3 className='user-summary'>JSON Results</h3>
-            <pre id='userSummary'>
+        <section id="results" className={showResults}>
+          <div className="row">
+            <h3 className="user-summary">JSON Results</h3>
+            <pre id="userSummary">
             {JSON.stringify(transformData(this.props))}
             </pre>
           </div>
-          <div className='row'>
+          <div className="row">
             <Button
-              className='repeat'
+              className="repeat"
               onClick={this.handleRepeatClick}
-              id='repeatButton'
-              text='Repeat' />
+              id="repeatButton"
+              text="Repeat"
+            />
           </div>
         </section>
       </div>
