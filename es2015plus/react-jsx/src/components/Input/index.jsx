@@ -1,6 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-const Input = ({className, label, name, onClick, type, value}) => {
+export default function Input ({
+  className,
+  label,
+  name,
+  onClick,
+  type,
+  value
+}) {
   return (
     <label className={`input ${className}`}>
       {label}
@@ -8,8 +15,9 @@ const Input = ({className, label, name, onClick, type, value}) => {
         name={name}
         onClick={onClick}
         type={type}
-        value={value} />
-      <div className='input__choice' />
+        value={value}
+      />
+      <div className="input__choice" />
     </label>
   )
 }
@@ -21,4 +29,3 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 }
-export default Input

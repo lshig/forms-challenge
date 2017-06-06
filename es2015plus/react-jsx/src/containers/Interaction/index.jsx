@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Button from '../../components/Button'
 import CheckboxesContent from '../../components/CheckboxesContent'
-import DropdownsContent from '../../components/DropdownsContent'
+import SelectContent from '../../components/SelectContent'
 import RadiosContent from '../../components/RadiosContent'
 import TextareasContent from '../../components/TextareasContent'
 import {
@@ -151,6 +151,73 @@ export default class Interaction extends Component {
     }
   }
   render () {
+    const createOptionsList = (startIndex, endIndex) => {
+      let results = []
+      for (let i = startIndex; i <= endIndex; i++) {
+        results.push(i)
+      }
+      return results
+    }
+    const checkboxOptions = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ]
+    const selectOptions = [{
+      label: 'Month',
+      name: 'month',
+      options: createOptionsList(1, 12)
+    },{
+      label: 'Day',
+      name: 'day',
+      options: createOptionsList(1, 31)
+    },{
+      label: 'Year',
+      name: 'year',
+      options: createOptionsList(2000, 2018)
+    }]
+    const radioOptions = [{
+      label: '5AM - 11:59AM',
+      value: 'Morning'
+    }, {
+      label: '12PM - 12:59PM',
+      value: 'Noon'
+    }, {
+      label: '1PM - 4:59PM',
+      value: 'Afternoon'
+    }, {
+      label: '5PM - 7:59AM',
+      value: 'Evening'
+    }, {
+      label: '8PM - 11:59AM',
+      value: 'Night'
+    }, {
+      label: '12AM - 12:59AM',
+      value: 'Midnight'
+    }, {
+      label: '1AM - 4:59AM',
+      value: 'Late Night'
+    }]
+    const textareaOptions = [{
+      className: 'textarea__small',
+      label: 'First Name',
+      name: 'firstName',
+      placeholder: 'Jane'
+    },{
+      className: 'textarea__small',
+      label: 'Last Name',
+      name: 'lastName',
+      placeholder: 'Doe'
+    },{
+      className: 'textarea__large',
+      label: 'Comments',
+      name: 'comments',
+      placeholder: 'Hello, World!'
+    }]
     const showResults = this.state.activeTime ? 'content__hide' : ''
     const showInteraction = this.state.activeTime ? '' : 'content__hide'
     const showContent = (contentId) => {
@@ -161,12 +228,12 @@ export default class Interaction extends Component {
     }
     return (
       <div>
-        <section id='time-display'>
-          <div className='row'>
-            <h1 id='timer'>{this.state.timerStatus}</h1>
+        <section id="time-display">
+          <div className="row">
+            <h1 id="timer">{this.state.timerStatus}</h1>
           </div>
         </section>
-        <section id='interaction' className={showInteraction}>
+        <section id="interaction" className={showInteraction}>
           <nav>
             {tabContentMap.map(tab =>
               <Button
@@ -174,48 +241,59 @@ export default class Interaction extends Component {
                 className={`nav--tab ${highlightTab(tab.tabId)}`}
                 id={tab.tabId}
                 onClick={this.handleTabClick}
-                text={tab.tabText} />
+                text={tab.tabText}
+              />
             )}
           </nav>
           <form>
             <CheckboxesContent
+              checkboxOptions={checkboxOptions}
               className={showContent('checkboxContent')}
-              id='checkboxContent'
+              id="checkboxContent"
               onCheckboxClick={this.handleCheckboxClick}
               onAutofillClick={this.handleAutofillClick}
-              onNextClick={(e) => this.handleDirectionClick(e, false)} />
-            <DropdownsContent
+              onNextClick={event => this.handleDirectionClick(event, false)}
+            />
+            <SelectContent
               className={showContent('selectContent')}
-              id='selectContent'
+              id="selectContent"
               onSelectChange={this.handleInputEvent}
-              onNextClick={(e) => this.handleDirectionClick(e, false)}
-              onPreviousClick={(e) => this.handleDirectionClick(e, true)} />
+              onNextClick={event => this.handleDirectionClick(event, false)}
+              onPreviousClick={event => this.handleDirectionClick(event, true)}
+              selectOptions={selectOptions}
+            />
             <RadiosContent
               className={showContent('radioContent')}
-              id='radioContent'
+              id="radioContent"
               onRadioClick={this.handleInputEvent}
-              onNextClick={(e) => this.handleDirectionClick(e, false)}
-              onPreviousClick={(e) => this.handleDirectionClick(e, true)} />
+              onNextClick={event => this.handleDirectionClick(event, false)}
+              onPreviousClick={event => this.handleDirectionClick(event, true)}
+              radioOptions={radioOptions}
+            />
             <TextareasContent
               className={showContent('textareaContent')}
-              id='textareaContent'
+              id="textareaContent"
               onTextareaChange={this.handleInputEvent}
-              onPreviousClick={(e) => this.handleDirectionClick(e, true)}
-              onSubmitClick={this.handleSubmitClick} />
+              onPreviousClick={event => this.handleDirectionClick(event, true)}
+              onSubmitClick={this.handleSubmitClick}
+              textareaOptions={textareaOptions}
+            />
           </form>
         </section>
-        <section id='results'
-          className={showResults}>
-          <div className='row'>
-            <h3 className='user-summary'>JSON Results</h3>
-            <pre id='userSummary'>{JSON.stringify(transformData(this.state))}</pre>
+        <section id="results" className={showResults}>
+          <div className="row">
+            <h3 className="user-summary">JSON Results</h3>
+            <pre id="userSummary">
+              {JSON.stringify(transformData(this.state))}
+            </pre>
           </div>
-          <div className='row'>
+          <div className="row">
             <Button
-              className='repeat'
+              className="repeat"
               onClick={this.handleRepeatClick}
-              id='repeatButton'
-              text='Repeat' />
+              id="repeatButton"
+              text="Repeat"
+            />
           </div>
         </section>
       </div>

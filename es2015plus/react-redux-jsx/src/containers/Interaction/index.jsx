@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {autofillForm,inputValue,resetForm,submitForm} from './formState/actions'
-import {resetNavigation,showDirectedContent,showTabContent} from './navigationState/actions'
-import {earlyStopTimer,proceedTimer,resetTimer,startTimer,stopTimer} from './timerState/actions'
-import {tabContentMap,transformData} from './utils'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { autofillForm, inputValue, resetForm, submitForm } from './formState/actions'
+import { resetNavigation, showDirectedContent, showTabContent } from './navigationState/actions'
+import { earlyStopTimer, proceedTimer, resetTimer,startTimer, stopTimer } from './timerState/actions'
+import { tabContentMap, transformData } from './utils'
 import Button from '../../components/Button'
 import CheckboxesContent from '../../components/CheckboxesContent'
 import SelectsContent from '../../components/SelectsContent'
@@ -21,17 +21,17 @@ class Interaction extends Component {
     this.handleTabClick = this.handleTabClick.bind(this)
   }
   componentDidMount () {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(startTimer(this.handleTimer.bind(this)))
     dispatch(resetForm())
     dispatch(resetNavigation())
   }
   handleAutofillClick () {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(autofillForm())
   }
   handleCheckboxClick (event) {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     const weekdayCheckboxes = document.getElementsByName(event.target.name)
     var filterResult = []
     for (var f = 0; f < weekdayCheckboxes.length; f++) {
@@ -42,15 +42,15 @@ class Interaction extends Component {
     dispatch(inputValue(event.target.name, filterResult))
   }
   handleDirectionClick (event, previousFlag) {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(showDirectedContent(event.target.parentNode.parentNode.id, previousFlag))
   }
   handleInputEvent (event) {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(inputValue(event.target.name, event.target.value))
   }
   handleRepeatClick () {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(resetTimer(this.handleTimer.bind(this)))
     dispatch(resetForm())
     dispatch(resetNavigation())
@@ -61,11 +61,11 @@ class Interaction extends Component {
     dispatch(submitForm())
   }
   handleTabClick (event) {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(showTabContent(event.target.id))
   }
   handleTimer () {
-    const {dispatch,timeCounter,intervalId} = this.props
+    const { dispatch, timeCounter, intervalId } = this.props
     if (timeCounter < 0) {
       dispatch(stopTimer(intervalId))
     } else {
@@ -140,7 +140,7 @@ class Interaction extends Component {
       name: 'comments',
       placeholder: 'Hello, World!'
     }]
-    const {activeTime, activeTabId, activeContentId, timerStatus} = this.props
+    const { activeTime, activeTabId, activeContentId, timerStatus } = this.props
     const showResults = activeTime ? 'content__hide' : ''
     const showInteraction = activeTime ? '' : 'content__hide'
     const showContent = (contentId) => {
@@ -209,7 +209,7 @@ class Interaction extends Component {
           <div className="row">
             <h3 className="user-summary">JSON Results</h3>
             <pre id="userSummary">
-            {JSON.stringify(transformData(this.props))}
+              {JSON.stringify(transformData(this.props))}
             </pre>
           </div>
           <div className="row">

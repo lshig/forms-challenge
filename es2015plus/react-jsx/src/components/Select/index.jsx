@@ -1,27 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-const Select = ({name, label, onChange, options}) => {
-  const createOption = (item) => (
-    <option
-      key={item}
-      value={item}>
-      {item}
-    </option>
-  )
+export default function Select ({name, label, onChange, options}) {
   return (
-    <div className='select'>
+    <div className="select">
       <select
         id={name}
         name={name}
         onChange={onChange}>
         <option
           key={label}
-          value=''>
+          value="">
           {label}
         </option>
-        {options.map(createOption)}
+        {options.map((item,index) => (
+          <option
+            key={index}
+            value={item}>
+            {item}
+          </option>
+        ))}
       </select>
-      <div className='select__arrow' />
+      <div className="select__arrow" />
     </div>
   )
 }
@@ -31,4 +30,3 @@ Select.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired
 }
-export default Select

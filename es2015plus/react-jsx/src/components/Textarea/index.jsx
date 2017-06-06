@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-const TextArea = ({name, label, className, onChange, placeholder}) => {
+export default function TextArea({
+  name,
+  label,
+  className,
+  onChange,
+  placeholder
+}) {
   return (
     <label htmlFor={name}>
       {label}
@@ -10,7 +16,8 @@ const TextArea = ({name, label, className, onChange, placeholder}) => {
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-        type='text' />
+        type="text"
+      />
     </label>
   )
 }
@@ -21,4 +28,3 @@ TextArea.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired
 }
-export default TextArea
