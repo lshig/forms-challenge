@@ -8,14 +8,14 @@ const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 })
 const VendorChunkPluginConfig = new webpack.optimize.CommonsChunkPlugin({
   name: 'vendor',
-  filename: 'es2015plus/react-redux-jsx/dest/vendor.js',
+  filename: 'es2015plus/react-redux-jsx/dist/vendor.js',
   minChunks: function(module){
     return module.context && module.context.indexOf("node_modules") !== -1;
   }
 })
 const config = {
   entry: {
-    'es2015plus/react-redux-jsx/dest/ES2015plus-React-Redux-JSX': './src/index.jsx'
+    'es2015plus/react-redux-jsx/dist/ES2015plus-React-Redux-JSX': './src/index.jsx'
   },
   output: {
     path: path.join(__dirname, '..', '..'),
