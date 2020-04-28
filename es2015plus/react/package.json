@@ -1,10 +1,10 @@
 {
-  "name": "starter-kit",
-  "version": "0.1.0",
-  "description": "A basic set-up to dabble and test with React, Redux, Webpack, and Babel.",
-  "main": "bundle.js",
+  "name": "forms-challenge",
+  "version": "0.2.0",
+  "description": "Form experiment with ES2015+ and React",
+  "main": "es2015plus-react.js",
   "author": "Liz Shigetoshi",
-  "repository": "https://github.com/lshig/starter-kit.git",
+  "repository": "https://github.com/lshig/forms-challenge.git",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",

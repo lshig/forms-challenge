@@ -18,7 +18,7 @@ const navigation = (state = initialTabContentState, action) => {
         activeTabId: 'checkboxTab',
         activeContentId: 'checkboxContent'
       };
-    case SHOW_DIRECTED_CONTENT:
+    case SHOW_DIRECTED_CONTENT: {
       const tabContentObj = matchContentToTab(
         action.tabId,
         action.previousFlag
@@ -27,6 +27,7 @@ const navigation = (state = initialTabContentState, action) => {
         activeTabId: tabContentObj.tabId,
         activeContentId: tabContentObj.contentId
       };
+    }
     case SHOW_TAB_CONTENT:
       return {
         activeTabId: action.tabId,

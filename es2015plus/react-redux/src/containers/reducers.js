@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import form from './Interaction/formState/reducers';
-import navigation from './Interaction/navigationState/reducers';
-import timer from './Interaction/timerState/reducers';
+import form from './Form/formState/reducers';
+import navigation from './Form/navigationState/reducers';
+import timer from './Form/timerState/reducers';
 
 export default combineReducers({
   form,

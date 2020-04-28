@@ -3,8 +3,7 @@ import {
   PROCEED_TIMER,
   RESET_TIMER,
   START_TIMER,
-  STOP_TIMER,
-  TIMER_DURATION
+  STOP_TIMER
 } from './constants';
 
 export function earlyStopTimer(timeCounter, intervalId) {

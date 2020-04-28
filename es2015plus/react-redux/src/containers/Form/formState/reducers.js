@@ -21,7 +21,7 @@ const initialFormState = {
 
 const form = (state = initialFormState, action) => {
   switch (action.type) {
-    case AUTOFILL_FORM:
+    case AUTOFILL_FORM: {
       const autofillData = {
         comments: 'Hello, World!',
         firstName: 'Jane',
@@ -34,11 +34,13 @@ const form = (state = initialFormState, action) => {
       };
       setView(autofillData);
       return autofillData;
-    case INPUT_VALUE:
+    }
+    case INPUT_VALUE: {
       const result = {};
       result[action.name] = action.value;
       return Object.assign({}, state, result);
-    case RESET_FORM:
+    }
+    case RESET_FORM: {
       const resetData = {
         comments: '',
         dateTime: '',
@@ -52,6 +54,7 @@ const form = (state = initialFormState, action) => {
       };
       setView(resetData);
       return resetData;
+    }
     case SUBMIT_FORM:
       return state;
     default:

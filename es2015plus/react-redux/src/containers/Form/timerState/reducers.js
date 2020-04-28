@@ -26,7 +26,7 @@ const timer = (state = initialTimerState, action) => {
         sessionDuration: (TIMER_DURATION - action.timeCounter - 1).toString(),
         timerStatus: 'Thanks for your submission!'
       });
-    case PROCEED_TIMER:
+    case PROCEED_TIMER: {
       let minutes = parseInt(action.timeCounter / 60, 10);
       let seconds = parseInt(action.timeCounter % 60, 10);
       minutes = minutes < 10 ? '0' + minutes : minutes;
@@ -35,7 +35,8 @@ const timer = (state = initialTimerState, action) => {
         timerStatus: minutes + ':' + seconds,
         timeCounter: action.timeCounter - 1
       });
-    case RESET_TIMER:
+    }
+    case RESET_TIMER: {
       const resetTimerId = setInterval(action.timeHandler, 1000);
       return {
         activeTime: true,
@@ -45,7 +46,8 @@ const timer = (state = initialTimerState, action) => {
         timeCounter: TIMER_DURATION,
         timerStatus: 'Another One!'
       };
-    case START_TIMER:
+    }
+    case START_TIMER: {
       const startTimerId = setInterval(action.timeHandler, 1000);
       return {
         activeTime: true,
@@ -55,6 +57,7 @@ const timer = (state = initialTimerState, action) => {
         timeCounter: TIMER_DURATION,
         timerStatus: 'Begin!'
       };
+    }
     case STOP_TIMER:
       return Object.assign({}, state, {
         activeTime: false,

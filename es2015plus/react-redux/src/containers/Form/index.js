@@ -1,38 +1,34 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  autofillForm,
+  inputValue,
+  resetForm,
+  submitForm
+} from './formState/actions';
+import {
+  resetNavigation,
+  showDirectedContent,
+  showTabContent
+} from './navigationState/actions';
+import {
+  earlyStopTimer,
+  proceedTimer,
+  resetTimer,
+  startTimer,
+  stopTimer
+} from './timerState/actions';
+import { tabContentMap, transformData } from './utils';
 import Button from '../../components/Button';
 import CheckboxesContent from '../../components/CheckboxesContent';
-import SelectContent from '../../components/SelectContent';
+import SelectsContent from '../../components/SelectsContent';
 import RadiosContent from '../../components/RadiosContent';
 import TextareasContent from '../../components/TextareasContent';
-import {
-  duration,
-  tabContentMap,
-  matchContentToTab,
-  setView,
-  transformData
-} from './utils';
 
-export default class Interaction extends Component {
-  constructor() {
-    super();
-    this.state = {
-      activeTabId: 'checkboxTab',
-      activeContentId: 'checkboxContent',
-      activeTime: true,
-      comments: '',
-      dateTime: '',
-      day: '',
-      firstName: '',
-      intervalId: setInterval(this.handleTimer.bind(this), 1000),
-      lastName: '',
-      month: '',
-      sessionDuration: '',
-      timeOfDay: '',
-      timer: duration,
-      timerStatus: 'Begin!',
-      weekday: [],
-      year: ''
-    };
+class Form extends Component {
+  constructor(props) {
+    super(props);
     this.handleAutofillClick = this.handleAutofillClick.bind(this);
     this.handleCheckboxClick = this.handleCheckboxClick.bind(this);
     this.handleDirectionClick = this.handleDirectionClick.bind(this);
@@ -42,114 +38,66 @@ export default class Interaction extends Component {
     this.handleTabClick = this.handleTabClick.bind(this);
   }
 
-  handleAutofillClick() {
-    const autofillModel = {
-      comments: 'Hello, World!',
-      firstName: 'Jane',
-      lastName: 'Doe',
-      day: '14',
-      month: '3',
-      timeOfDay: 'Late Night',
-      weekday: ['Sunday', 'Thursday', 'Friday', 'Saturday'],
-      year: '2015'
-    };
-    setView(autofillModel);
-    this.setState(autofillModel);
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(startTimer(this.handleTimer.bind(this)));
+    dispatch(resetForm());
+    dispatch(resetNavigation());
   }
 
-  handleCheckboxClick() {
-    const weekdayCheckboxes = document.getElementsByName('weekday');
+  handleAutofillClick() {
+    const { dispatch } = this.props;
+    dispatch(autofillForm());
+  }
+
+  handleCheckboxClick(event) {
+    const { dispatch } = this.props;
+    const weekdayCheckboxes = document.getElementsByName(event.target.name);
     const filterResult = [];
     for (let f = 0; f < weekdayCheckboxes.length; f++) {
       if (weekdayCheckboxes[f].checked) {
         filterResult.push(weekdayCheckboxes[f].value);
       }
     }
-    this.setState({
-      weekday: filterResult
-    });
+    dispatch(inputValue(event.target.name, filterResult));
   }
 
   handleDirectionClick(event, previousFlag) {
-    const parentContentId = event.target.parentNode.parentNode.id;
-    const tabContentObj = matchContentToTab(parentContentId, previousFlag);
-    this.setState({
-      activeTabId: tabContentObj.tabId,
-      activeContentId: tabContentObj.contentId
-    });
+    const { dispatch } = this.props;
+    dispatch(
+      showDirectedContent(event.target.parentNode.parentNode.id, previousFlag)
+    );
   }
 
   handleInputEvent(event) {
-    const currentStateObject = {};
-    currentStateObject[event.target.name] = event.target.value;
-    this.setState(currentStateObject);
+    const { dispatch } = this.props;
+    dispatch(inputValue(event.target.name, event.target.value));
   }
 
   handleRepeatClick() {
-    const repeatModel = {
-      activeTabId: 'checkboxTab',
-      activeContentId: 'checkboxContent',
-      activeTime: true,
-      comments: '',
-      dateTime: '',
-      day: '',
-      firstName: '',
-      intervalId: setInterval(this.handleTimer.bind(this), 1000),
-      lastName: '',
-      month: '',
-      sessionDuration: '',
-      timeOfDay: '',
-      timer: duration,
-      timerStatus: 'Another One!',
-      weekday: [],
-      year: ''
-    };
-    setView(repeatModel);
-    this.setState(repeatModel);
+    const { dispatch } = this.props;
+    dispatch(resetTimer(this.handleTimer.bind(this)));
+    dispatch(resetForm());
+    dispatch(resetNavigation());
   }
 
   handleSubmitClick() {
-    this.setState({
-      activeTime: false,
-      intervalId: clearInterval(this.state.intervalId),
-      dateTime: new Date().toISOString(),
-      sessionDuration: (duration - this.state.timer - 1).toString(),
-      timerStatus: 'Thanks for your submission!'
-    });
+    const { dispatch, timeCounter, intervalId } = this.props;
+    dispatch(earlyStopTimer(timeCounter, intervalId));
+    dispatch(submitForm());
   }
 
   handleTabClick(event) {
-    const tabId = event.target.id;
-    const contentId = (tabId) => {
-      const result = tabContentMap.filter((tab) => {
-        return tab.tabId === tabId;
-      });
-      return result[0].contentId;
-    };
-    this.setState({
-      activeTabId: tabId,
-      activeContentId: contentId(tabId)
-    });
+    const { dispatch } = this.props;
+    dispatch(showTabContent(event.target.id));
   }
 
   handleTimer() {
-    if (this.state.timer < 0) {
-      this.setState({
-        activeTime: false,
-        dateTime: new Date().toISOString(),
-        intervalId: clearInterval(this.state.intervalId),
-        sessionDuration: duration.toString(),
-        timerStatus: "Time's up!"
-      });
+    const { dispatch, timeCounter, intervalId } = this.props;
+    if (timeCounter < 0) {
+      dispatch(stopTimer(intervalId));
     } else {
-      let minutes = parseInt(this.state.timer / 60, 10);
-      let seconds = parseInt(this.state.timer % 60, 10);
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-      this.setState({
-        timerStatus: minutes + ':' + seconds,
-        timer: this.state.timer - 1
-      });
+      dispatch(proceedTimer(timeCounter));
     }
   }
 
@@ -237,22 +185,29 @@ export default class Interaction extends Component {
         placeholder: 'Hello, World!'
       }
     ];
-    const showResults = this.state.activeTime ? 'content__hide' : '';
-    const showInteraction = this.state.activeTime ? '' : 'content__hide';
+    const {
+      activeTime,
+      activeTabId,
+      activeContentId,
+      timerStatus
+    } = this.props;
+    const showResults = activeTime ? 'content__hide' : '';
+    const showForm = activeTime ? '' : 'content__hide';
     const showContent = (contentId) => {
-      return this.state.activeContentId === contentId ? '' : 'content__hide';
+      return activeContentId === contentId ? '' : 'content__hide';
     };
     const highlightTab = (tabId) => {
-      return this.state.activeTabId === tabId ? ' nav--tab__selected' : '';
+      return activeTabId === tabId ? ' nav--tab__selected' : '';
     };
+
     return (
       <div>
         <section id="time-display">
           <div className="row">
-            <h1 id="timer">{this.state.timerStatus}</h1>
+            <h1 id="timer">{timerStatus}</h1>
           </div>
         </section>
-        <section id="interaction" className={showInteraction}>
+        <section id="interaction" className={showForm}>
           <nav>
             {tabContentMap.map((tab) => (
               <Button
@@ -271,35 +226,41 @@ export default class Interaction extends Component {
               id="checkboxContent"
               onCheckboxClick={this.handleCheckboxClick}
               onAutofillClick={this.handleAutofillClick}
-              onNextClick={(event) => this.handleDirectionClick(event, false)}
+              onNextClick={(event) => {
+                this.handleDirectionClick(event, false);
+              }}
             />
-            <SelectContent
+            <SelectsContent
               className={showContent('selectContent')}
               id="selectContent"
               onSelectChange={this.handleInputEvent}
-              onNextClick={(event) => this.handleDirectionClick(event, false)}
-              onPreviousClick={(event) =>
-                this.handleDirectionClick(event, true)
-              }
+              onNextClick={(event) => {
+                this.handleDirectionClick(event, false);
+              }}
+              onPreviousClick={(event) => {
+                this.handleDirectionClick(event, true);
+              }}
               selectOptions={selectOptions}
             />
             <RadiosContent
               className={showContent('radioContent')}
               id="radioContent"
               onRadioClick={this.handleInputEvent}
-              onNextClick={(event) => this.handleDirectionClick(event, false)}
-              onPreviousClick={(event) =>
-                this.handleDirectionClick(event, true)
-              }
+              onNextClick={(event) => {
+                this.handleDirectionClick(event, false);
+              }}
+              onPreviousClick={(event) => {
+                this.handleDirectionClick(event, true);
+              }}
               radioOptions={radioOptions}
             />
             <TextareasContent
               className={showContent('textareaContent')}
               id="textareaContent"
               onTextareaChange={this.handleInputEvent}
-              onPreviousClick={(event) =>
-                this.handleDirectionClick(event, true)
-              }
+              onPreviousClick={(event) => {
+                this.handleDirectionClick(event, true);
+              }}
               onSubmitClick={this.handleSubmitClick}
               textareaOptions={textareaOptions}
             />
@@ -309,7 +270,7 @@ export default class Interaction extends Component {
           <div className="row">
             <h3 className="user-summary">JSON Results</h3>
             <pre id="userSummary">
-              {JSON.stringify(transformData(this.state))}
+              {JSON.stringify(transformData(this.props))}
             </pre>
           </div>
           <div className="row">
@@ -325,3 +286,65 @@ export default class Interaction extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  activeTabId: PropTypes.string,
+  activeContentId: PropTypes.string,
+  activeTime: PropTypes.bool,
+  comments: PropTypes.string,
+  dateTime: PropTypes.string,
+  day: PropTypes.string,
+  dispatch: PropTypes.func,
+  firstName: PropTypes.string,
+  intervalId: PropTypes.string,
+  lastName: PropTypes.string,
+  timeCounter: PropTypes.number,
+  month: PropTypes.string,
+  sessionDuration: PropTypes.string,
+  timeOfDay: PropTypes.string,
+  timerStatus: PropTypes.string,
+  weekday: PropTypes.arrayOf(PropTypes.string),
+  year: PropTypes.string
+};
+
+function mapStateToProps(state) {
+  const { activeTabId, activeContentId } = state.navigation;
+  const {
+    activeTime,
+    dateTime,
+    sessionDuration,
+    intervalId,
+    timeCounter,
+    timerStatus
+  } = state.timer;
+  const {
+    comments,
+    firstName,
+    lastName,
+    day,
+    month,
+    timeOfDay,
+    weekday,
+    year
+  } = state.form;
+  return {
+    activeTabId,
+    activeContentId,
+    activeTime,
+    intervalId,
+    timeCounter,
+    sessionDuration,
+    dateTime,
+    timerStatus,
+    comments,
+    firstName,
+    lastName,
+    day,
+    month,
+    timeOfDay,
+    weekday,
+    year
+  };
+}
+
+export default connect(mapStateToProps)(Form);

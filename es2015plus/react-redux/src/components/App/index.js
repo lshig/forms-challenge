@@ -1,12 +1,12 @@
 import React from 'react';
 import Introduction from '../Introduction';
-import Interaction from '../../containers/Interaction';
+import Form from '../../containers/Form';
 
 export default function App() {
   return (
     <div>
       <Introduction />
-      <Interaction />
+      <Form />
     </div>
   );
 }
