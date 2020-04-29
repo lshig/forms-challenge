@@ -6,20 +6,20 @@ import {
   inputValue,
   resetForm,
   submitForm
-} from './formState/actions';
+} from '../../redux/form/actions';
 import {
   resetNavigation,
   showDirectedContent,
   showTabContent
-} from './navigationState/actions';
+} from '../../redux/navigation/actions';
 import {
   earlyStopTimer,
   proceedTimer,
   resetTimer,
   startTimer,
   stopTimer
-} from './timerState/actions';
-import { tabContentMap, transformData } from './utils';
+} from '../../redux/timer/actions';
+import { tabContentMap, transformData } from '../../utils';
 import Button from '../../components/Button';
 import CheckboxesContent from '../../components/CheckboxesContent';
 import SelectsContent from '../../components/SelectsContent';

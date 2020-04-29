@@ -1,5 +1,4 @@
-import { setView } from '../utils';
-
+import { setView } from '../../utils';
 import {
   AUTOFILL_FORM,
   INPUT_VALUE,

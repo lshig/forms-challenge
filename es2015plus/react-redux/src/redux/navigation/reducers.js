@@ -1,5 +1,4 @@
-import { getContentId, matchContentToTab } from '../utils';
-
+import { getContentId, matchContentToTab } from '../../utils';
 import {
   RESET_NAVIGATION,
   SHOW_DIRECTED_CONTENT,
